@@ -1,3 +1,17 @@
+<?php
+require_once "../../config.php";
+
+
+// Inicialize a sessão
+session_start();
+
+// Verifique se o usuário está logado, se não, redirecione-o para uma página de login
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: ../../login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -15,6 +29,7 @@
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,22 +69,13 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                             <!-- Logo icon -->
-                            <b class="logo-icon">
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                                <img src="../../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo icon -->
-                                <img src="../../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                            </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
-                            <span class="logo-text">
+                            <span class="logo-text" style="color: white">
                                 <!-- dark Logo text -->
-                                <img src="../../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="../../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                Sistema de avaliação
                             </span>
                         </a>
                     </div>
@@ -93,14 +99,6 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-magnify font-20 me-1"></i>
-                                    <div class="ms-1 d-none d-sm-block">
-                                        <span>Search</span>
-                                    </div>
-                                </div>
-                            </a>
                             <form class="app-search position-absolute">
                                 <input type="text" class="form-control" placeholder="Search &amp; enter">
                                 <a class="srh-btn">
@@ -117,16 +115,12 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
+                            <a class="nav-link dropdown-toggle" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet me-1 ms-1"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
-                                    Inbox</a>
+                                <a class="dropdown-item" href="../../logout.php"><i class="ti-email me-1 ms-1"></i>
+                                Sair</a>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -149,52 +143,18 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-av-timer"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
+                        
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-account-network"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="form-basic.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-arrange-bring-forward"></i>
-                                <span class="hide-menu">Form Basic</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="table-basic.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-border-none"></i>
-                                <span class="hide-menu">Table</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-face"></i>
-                                <span class="hide-menu">Icon</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="relatorio.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-file"></i>
-                                <span class="hide-menu">Blank</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="error-404.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-alert-outline"></i>
-                                <span class="hide-menu">404</span>
+                                <span class="hide-menu">Relatório</span>
                             </a>
                         </li>
                     </ul>
@@ -216,7 +176,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Starter Page</h4>
+                        <h4 class="page-title">Página de relatório</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
@@ -225,7 +185,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Starter Page</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Página de relatório</li>
                                 </ol>
                             </nav>
                         </div>
@@ -246,7 +206,85 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                This is some text within a card block.
+                                <div class="content" style="display: flex; align-items: center; flex-direction:column">
+
+                                    <h1 class="my-5">Pagina de Relatorio.</h1>
+                                    <?php
+                                        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+                                    ?>
+
+                                    <form method="POST" action="">
+                                        <?php
+                                            $data_inicio = "";
+                                            if(isset($dados['data_inicio'])){
+                                                $data_inicio = $dados['data_inicio'];
+                                            }
+                                        ?>
+                                        <?php
+                                            $data_final = "";
+                                            if(isset($dados['data_final'])){
+                                                $data_final = $dados['data_final'];
+                                            }
+                                        ?>
+                                        <label>Data de Inicio: </label>
+                                        <input type="date" name="data_inicio" value="<?php echo $data_inicio; ?>"><br><br>
+
+                                        <label>Data Final: </label>
+                                        <input type="date" name="data_final" value="<?php echo $data_final; ?>"><br><br>
+
+                                        <button class="btn btn-success btn-sm mt-3" type="submit" value="Pesquisar" name="PesqEntreData">Pesquisar</button>
+                                    </form>
+                                    <?php
+                                        $otimo = 0;
+                                        $ruim = 0;
+                                        $regular = 0;
+                                    ?>
+                                    <div class="m-4 border border-dark" style="width: 50%;">
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="col-2" scope="col">#</th>
+                                                    <th class="col-5" scope="col">Avaliação</th>
+                                                    <th class="col-5" scope="col">Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                    if (!empty($dados["PesqEntreData"])) {
+                                                        $querry_avaliacaos = "SELECT id, nome, created_at FROM avaliacao WHERE created_at BETWEEN :data_inicio AND :data_final ";
+                                                        $result_avaliacaos = $pdo->prepare($querry_avaliacaos);
+                                                        $result_avaliacaos->bindParam(':data_inicio', $dados['data_inicio']);
+                                                        $result_avaliacaos->bindParam(':data_final', $dados['data_final']);
+                                                        $result_avaliacaos->execute();
+
+                                                        while($row_avalicao = $result_avaliacaos->fetch(PDO::FETCH_ASSOC)){
+                                                            if($row_avalicao['nome'] == 'Otimo'){
+                                                                $otimo += 1;
+                                                            }elseif($row_avalicao['nome'] == 'Ruim'){
+                                                                $ruim += 1;
+                                                            }elseif($row_avalicao['nome'] == 'Regular'){
+                                                                $regular += 1;
+                                                            }
+                                                            echo "<tr>";
+                                                                echo "<td>".$row_avalicao['id']."</td>";
+                                                                echo "<td>".$row_avalicao['nome']."</td>";
+                                                                echo "<td>".date('d/m/Y H:i:s', strtotime($row_avalicao['created_at']))."</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    } else {
+                                                        echo "<tr>";
+                                                            echo "<td>Não há dados</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <?php
+                                        echo "Nesse Periodo teve de Avaliações" . "<br>";
+                                        echo "Otimos: " . $otimo . " Regular: " . $regular . " Ruim: " . $ruim;
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
