@@ -22,7 +22,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="description"
         content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Nice Admin Lite Template by WrapPixel</title>
+    <title>Dashboard</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
@@ -69,10 +69,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <div class="navbar-brand">
                         <a href="index.php" class="logo">
                             <!-- Logo icon -->
+                            <i class="ti-face-smile me-1 ms-1" style="color: white"></i>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text" style="color: white">
                                 <!-- dark Logo text -->
+
                                 Sistema de avaliação
                             </span>
                         </a>
@@ -114,11 +116,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
+                            <i class="ti-user me-1 ms-1"></i><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../../logout.php"><i class="ti-email me-1 ms-1"></i>
+                                <a class="dropdown-item" href="../../logout.php"><i class="ti-close me-1 ms-1"></i>
                                 Sair</a>
+                                <a class="dropdown-item" href="../../reset-password.php"><i class="ti-key me-1 ms-1"></i>
+                                Trocar senha</a>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -232,8 +236,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Nice admin. Designed and Developed by
-                <a href="https://www.wrappixel.com">WrapPixel</a>.
+                Sistema de avaliação criado por: </br> 
+                Djalma, João, Marcus e Matheus
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

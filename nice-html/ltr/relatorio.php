@@ -25,7 +25,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta name="description"
         content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Nice Admin Lite Template by WrapPixel</title>
+    <title>Relatório</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
@@ -71,6 +71,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div class="navbar-brand">
                     <a href="index.php" class="logo">
                             <!-- Logo icon -->
+                            <i class="ti-face-smile me-1 ms-1" style="color: white"></i>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text" style="color: white">
@@ -116,11 +117,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
+                            <i class="ti-user me-1 ms-1"></i><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../../logout.php"><i class="ti-email me-1 ms-1"></i>
+                                <a class="dropdown-item" href="../../logout.php"><i class="ti-close me-1 ms-1"></i>
                                 Sair</a>
+                                <a class="dropdown-item" href="../../reset-password.php"><i class="ti-key me-1 ms-1"></i>
+                                Trocar senha</a>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -206,33 +209,34 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="content" style="display: flex; align-items: center; flex-direction:column">
+                                <div class="content" style="display: flex; align-items: center; flex-direction:column; color: #000">
 
-                                    <h1 class="my-5">Pagina de Relatorio.</h1>
+                                    <h1 class="my-5">Pagina de Relatório .</h1> 
                                     <?php
                                         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
                                     ?>
-
                                     <form method="POST" action="">
                                         <?php
                                             $data_inicio = "";
                                             if(isset($dados['data_inicio'])){
                                                 $data_inicio = $dados['data_inicio'];
                                             }
-                                        ?>
+                                            ?>
                                         <?php
-                                            $data_final = "";
-                                            if(isset($dados['data_final'])){
-                                                $data_final = $dados['data_final'];
-                                            }
+                                        $data_final = "";
+                                        if(isset($dados['data_final'])){
+                                            $data_final = $dados['data_final'];
+                                        }
                                         ?>
                                         <label>Data de Inicio: </label>
                                         <input type="date" name="data_inicio" value="<?php echo $data_inicio; ?>"><br><br>
-
+                                        
                                         <label>Data Final: </label>
                                         <input type="date" name="data_final" value="<?php echo $data_final; ?>"><br><br>
-
-                                        <button class="btn btn-success btn-sm mt-3" type="submit" value="Pesquisar" name="PesqEntreData">Pesquisar</button>
+                                        
+                                        <div class="buttonSearch" style="display: flex; flex-direction: column; align-items: center; ">
+                                            <button class="btn btn-success btn-sm mt-3" style = "border-radius: 10px; border: 0.5px solid"type="submit" value="Pesquisar" name="PesqEntreData">Pesquisar</button>
+                                        </div>
                                     </form>
                                     <?php
                                         $otimo = 0;
@@ -241,6 +245,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                     ?>
                                     <div class="m-4 border border-dark" style="width: 50%;">
                                         <table class="table">
+                                            
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th class="col-2" scope="col">#</th>
@@ -271,18 +276,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                                                 echo "<td>".date('d/m/Y H:i:s', strtotime($row_avalicao['created_at']))."</td>";
                                                             echo "</tr>";
                                                         }
-                                                    } else {
-                                                        echo "<tr>";
-                                                            echo "<td>Não há dados</td>";
-                                                        echo "</tr>";
                                                     }
                                                 ?>
                                             </tbody>
                                         </table>
                                     </div>
                                     <?php
-                                        echo "Nesse Periodo teve de Avaliações" . "<br>";
-                                        echo "Otimos: " . $otimo . " Regular: " . $regular . " Ruim: " . $ruim;
+                                        echo "Nesse período de avaliações, tiveram-se os seguintes votos:" . "<br>";
+                                        echo "Otimo: " . $otimo . " ";
+                                        echo "Regular: " . $regular . " ";
+                                        echo "Ruim: " . $ruim . " ";        
                                     ?>
                                 </div>
                             </div>
@@ -307,8 +310,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Nice admin. Designed and Developed by
-                <a href="https://www.wrappixel.com">WrapPixel</a>.
+                Sistema de avaliação criado por: </br> 
+                Djalma, João, Marcus e Matheus
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

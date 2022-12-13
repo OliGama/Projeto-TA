@@ -78,30 +78,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Redefinir senha</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body{ 
+            font: 14px sans-serif;  
+            height: 100%;
+            width: 100%; display: flex; 
+            justify-content: center;
+            align-items: center;
+            background-image: url("imagem.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #cccccc;
+            background-position: center;
+        }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Redefinir senha</h2>
-        <p>Por favor, preencha este formulário para redefinir sua senha.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div class="form-group">
-                <label>Nova senha</label>
-                <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
-                <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Confirme a senha</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Redefinir">
-                <a class="btn btn-link ml-2" href="welcome.php">Cancelar</a>
-            </div>
-        </form>
+    <div class="wrapper" style= "border: 2px solid #000; background-color: #ebebeb; box-shadow: -8px 8px 20px 0px;">
+        <div class="content" style = "margin: 20px ">
+            <h2>Redefinir senha</h2>
+            <p>Por favor, preencha este formulário para redefinir sua senha.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <div class="form-group">
+                    <label>Nova senha</label>
+                    <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
+                    <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Confirme a senha</label>
+                    <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Redefinir">
+                    <a class="btn btn-link ml-2" href="nice-html/ltr/index.php">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>    
 </body>
 </html>
